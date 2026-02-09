@@ -34,10 +34,13 @@ FOR UPDATE
 USING (auth.email() = customer_email)
 WITH CHECK (auth.email() = customer_email);
 
--- Update the DELETE policy to be more restrictive  
+-- Update the DELETE policy to be more restrictive
 DROP POLICY IF EXISTS "Authenticated users can delete consultation bookings" ON public.consultation_bookings;
 
 -- Only allow users to delete their own bookings
+-- Drop if exists to avoid conflicts with previous migrations
+DROP POLICY IF EXISTS "Users can delete their own consultation bookings" ON public.consultation_bookings;
+
 CREATE POLICY "Users can delete their own consultation bookings"
 ON public.consultation_bookings
 FOR DELETE

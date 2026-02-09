@@ -7,6 +7,8 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #1245 | 9:06 AM | 🔴 | Added CASCADE to Admin Function Drop for Dependent Policy Cleanup | ~398 |
+| #1244 | " | 🔵 | Migration Reveals Contact Form Architecture Refactoring | ~482 |
 | #1237 | 8:19 AM | 🔴 | Added Idempotent Policy Drop for Consultation Bookings Update Policy | ~322 |
 | #1234 | 8:18 AM | 🔵 | Consultation Bookings Feature with Security Policy Updates | ~423 |
 | #1231 | 8:17 AM | 🔴 | Updated Trigger Name and Reference for Renamed Privacy Preferences Table | ~324 |

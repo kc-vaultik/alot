@@ -3,7 +3,8 @@
 
 -- First, update the is_admin_user() function to work with service role only
 -- This allows admin access only via service role, not user authentication
-DROP FUNCTION IF EXISTS public.is_admin_user();
+-- Use CASCADE to drop dependent policies
+DROP FUNCTION IF EXISTS public.is_admin_user() CASCADE;
 CREATE OR REPLACE FUNCTION public.is_admin_user()
 RETURNS boolean
 LANGUAGE plpgsql
