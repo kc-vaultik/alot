@@ -7,5 +7,12 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #1178 | 12:37 AM | 🟣 | Sweepstakes Trivia Credits System Implemented | ~567 |
+| #1237 | 8:19 AM | 🔴 | Added Idempotent Policy Drop for Consultation Bookings Update Policy | ~322 |
+| #1234 | 8:18 AM | 🔵 | Consultation Bookings Feature with Security Policy Updates | ~423 |
+| #1231 | 8:17 AM | 🔴 | Updated Trigger Name and Reference for Renamed Privacy Preferences Table | ~324 |
+| #1230 | " | 🔴 | GDPR Migration Fixed: Index References Corrected Table Name | ~355 |
+| #1228 | " | 🟣 | Comprehensive GDPR Compliance System Implemented | ~775 |
+| #1227 | " | 🔴 | Renamed user_preferences to user_privacy_preferences to Resolve Table Conflict | ~409 |
+| #1218 | 7:51 AM | 🔴 | Fixed Deprecated Auth Config Migration for Supabase Compatibility | ~412 |
+| #1217 | 7:50 AM | ✅ | Authentication Security Configuration Enhanced | ~378 |
 </claude-mem-context>

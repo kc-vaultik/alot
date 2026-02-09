@@ -1,11 +1,10 @@
 -- Configure OTP settings for better security
--- Set OTP expiry to 10 minutes (600 seconds) instead of default
-UPDATE auth.config SET 
-  otp_expiry = 600,
-  sms_otp_expiry = 600
-WHERE true;
+-- NOTE: These settings are now configured via Supabase Dashboard > Authentication > Email Auth
+-- or via environment variables in newer Supabase versions.
+-- The auth.config table is no longer directly writable.
 
--- Also configure password reset expiry to be more secure
-UPDATE auth.config SET 
-  password_reset_token_validity_period = 3600 -- 1 hour
-WHERE true;
+-- OTP expiry: Set to 10 minutes (600 seconds) in Dashboard
+-- Password reset token validity: Set to 1 hour (3600 seconds) in Dashboard
+
+-- Migration placeholder (no-op)
+SELECT 1;

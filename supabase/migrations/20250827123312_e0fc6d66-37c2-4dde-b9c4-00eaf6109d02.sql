@@ -6,13 +6,16 @@ DROP POLICY IF EXISTS "Authenticated users can view consultation bookings" ON pu
 
 -- Create a secure policy that only allows users to see their own bookings
 -- This matches the authenticated user's email with the booking's customer email
-CREATE POLICY "Users can only view their own consultation bookings" 
-ON public.consultation_bookings 
-FOR SELECT 
+-- Drop if exists to avoid conflicts with previous migrations
+DROP POLICY IF EXISTS "Users can only view their own consultation bookings" ON public.consultation_bookings;
+
+CREATE POLICY "Users can only view their own consultation bookings"
+ON public.consultation_bookings
+FOR SELECT
 USING (
   -- Allow if the authenticated user's email matches the booking's customer email
-  auth.email() = customer_email 
-  OR 
+  auth.email() = customer_email
+  OR
   -- OR if the user has admin role (for future admin implementation)
   -- For now, we'll use a more restrictive approach and require explicit admin checks
   FALSE -- Placeholder for future admin role checking
@@ -22,6 +25,9 @@ USING (
 DROP POLICY IF EXISTS "Authenticated users can update consultation bookings" ON public.consultation_bookings;
 
 -- Only allow users to update their own bookings, and only specific fields
+-- Drop if exists to avoid conflicts with previous migrations
+DROP POLICY IF EXISTS "Users can update their own consultation bookings" ON public.consultation_bookings;
+
 CREATE POLICY "Users can update their own consultation bookings"
 ON public.consultation_bookings
 FOR UPDATE

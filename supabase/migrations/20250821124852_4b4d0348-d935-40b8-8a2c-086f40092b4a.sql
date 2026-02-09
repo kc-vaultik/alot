@@ -44,8 +44,9 @@ CREATE TABLE public.consent_records (
   updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );
 
--- User preferences for privacy settings
-CREATE TABLE public.user_preferences (
+-- User privacy preferences (GDPR compliance)
+-- NOTE: Renamed from user_preferences to avoid conflict with shopping preferences table
+CREATE TABLE public.user_privacy_preferences (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID NOT NULL,
   preference_key TEXT NOT NULL,
@@ -59,7 +60,7 @@ CREATE TABLE public.user_preferences (
 ALTER TABLE public.data_export_requests ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.data_deletion_requests ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.consent_records ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.user_preferences ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.user_privacy_preferences ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies for data export requests
 CREATE POLICY "Users can view their own export requests" 
@@ -104,25 +105,25 @@ ON public.consent_records
 FOR UPDATE 
 USING (auth.uid()::text = user_id::text);
 
--- RLS Policies for user preferences
-CREATE POLICY "Users can view their own preferences" 
-ON public.user_preferences 
-FOR SELECT 
+-- RLS Policies for user privacy preferences
+CREATE POLICY "Users can view their own privacy preferences"
+ON public.user_privacy_preferences
+FOR SELECT
 USING (auth.uid()::text = user_id::text);
 
-CREATE POLICY "Users can create their own preferences" 
-ON public.user_preferences 
-FOR INSERT 
+CREATE POLICY "Users can create their own privacy preferences"
+ON public.user_privacy_preferences
+FOR INSERT
 WITH CHECK (auth.uid()::text = user_id::text);
 
-CREATE POLICY "Users can update their own preferences" 
-ON public.user_preferences 
-FOR UPDATE 
+CREATE POLICY "Users can update their own privacy preferences"
+ON public.user_privacy_preferences
+FOR UPDATE
 USING (auth.uid()::text = user_id::text);
 
-CREATE POLICY "Users can delete their own preferences" 
-ON public.user_preferences 
-FOR DELETE 
+CREATE POLICY "Users can delete their own privacy preferences"
+ON public.user_privacy_preferences
+FOR DELETE
 USING (auth.uid()::text = user_id::text);
 
 -- Indexes for performance
@@ -133,7 +134,7 @@ CREATE INDEX idx_data_deletion_requests_status ON public.data_deletion_requests(
 CREATE INDEX idx_data_deletion_requests_scheduled ON public.data_deletion_requests(scheduled_for) WHERE status = 'pending';
 CREATE INDEX idx_consent_records_user_id ON public.consent_records(user_id);
 CREATE INDEX idx_consent_records_type ON public.consent_records(consent_type);
-CREATE INDEX idx_user_preferences_user_key ON public.user_preferences(user_id, preference_key);
+CREATE INDEX idx_user_privacy_preferences_user_key ON public.user_privacy_preferences(user_id, preference_key);
 
 -- Triggers for updated_at timestamps
 CREATE TRIGGER update_data_export_requests_updated_at
@@ -151,8 +152,8 @@ CREATE TRIGGER update_consent_records_updated_at
   FOR EACH ROW
   EXECUTE FUNCTION public.update_updated_at_column();
 
-CREATE TRIGGER update_user_preferences_updated_at
-  BEFORE UPDATE ON public.user_preferences
+CREATE TRIGGER update_user_privacy_preferences_updated_at
+  BEFORE UPDATE ON public.user_privacy_preferences
   FOR EACH ROW
   EXECUTE FUNCTION public.update_updated_at_column();
 
