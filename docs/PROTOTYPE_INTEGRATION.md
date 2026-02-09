@@ -334,8 +334,9 @@ alot/
    ```
 
 3. **Connect to Supabase**
-   - Use existing Supabase project (pzynbgpkixduqwnlqkaj)
-   - OR create new Supabase project and run migrations
+   - Use production Supabase project: `dovhuaykpvdbzdwiahzr`
+   - Credentials stored in `secrets/supabase.env`
+   - Frontend env already configured in `frontend/.env`
 
 4. **Optional: Run Local Backend**
    ```bash

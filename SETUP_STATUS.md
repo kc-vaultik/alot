@@ -192,17 +192,17 @@ https://github.com/kc-vaultik/alot
 
 ## 🚀 Deployment Options
 
-### Current Prototype
+### Current Production
+- **Frontend:** Vercel - https://alot-frontend.vercel.app
+- **Backend:** Supabase (dovhuaykpvdbzdwiahzr)
+- **Database:** Supabase PostgreSQL
+- **Organization:** ALOT Platform (dedicated)
+- **Region:** East US (North Virginia)
+
+### Original Prototype (Reference)
 - **Platform:** Lovable.dev
 - **URL:** https://mycollectcard.lovable.app
-- **Backend:** Supabase (pzynbgpkixduqwnlqkaj)
-
-### Proposed Production
-- **Frontend:** Vercel or AWS CloudFront
-- **Backend:** Supabase OR AWS ECS (FastAPI)
-- **Database:** Supabase PostgreSQL OR AWS RDS
-- **CDN:** CloudFront
-- **Monitoring:** Sentry + PostHog
+- **Status:** Archived/Reference only
 
 ---
 
