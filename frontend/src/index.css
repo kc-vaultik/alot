@@ -1,0 +1,486 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Safe area utilities for iOS and Android */
+:root {
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+  --safe-left: env(safe-area-inset-left);
+  --safe-right: env(safe-area-inset-right);
+}
+
+.safe-top { padding-top: var(--safe-top); }
+.safe-bottom { padding-bottom: var(--safe-bottom); }
+.safe-left { padding-left: var(--safe-left); }
+.safe-right { padding-right: var(--safe-right); }
+.min-h-dvh { min-height: 100dvh; }
+
+/* Prevent horizontal scrolling on mobile - use clip instead of hidden to preserve sticky */
+html {
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  max-width: 100vw;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ============================================
+   ALOT! DESIGN SYSTEM: "Digital Vandalism"
+   ============================================
+   Theme: Hype-beast drop site x retro arcade x street market
+   Aesthetic: Loud, tactile, extremely gamified
+   All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* === CORE BACKGROUND === */
+    /* Deep dark asphalt/concrete wall feel */
+    --background: 220 15% 8%;
+    --background-light: 220 12% 12%;
+    --background-gradient-start: 220 15% 6%;
+    --background-gradient-middle: 230 20% 8%;
+    --background-gradient-end: 240 15% 10%;
+    --foreground: 0 0% 98%;
+
+    /* Footer - same dark theme */
+    --footer-background: 220 15% 6%;
+    --footer-foreground: 0 0% 100%;
+    --footer-muted: 0 0% 60%;
+
+    /* === HYPE PACK COLORS === */
+    /* Primary: Hot Pink - main brand color from logo */
+    --primary: 330 95% 60%;
+    --primary-hover: 330 95% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Electric Blue - accent from logo */
+    --accent-blue: 195 100% 50%;
+    --accent-blue-hover: 195 100% 55%;
+    --accent-blue-foreground: 0 0% 100%;
+
+    /* Volt Green - success/money/winning */
+    --success: 80 100% 50%;
+    --success-bright: 80 100% 55%;
+    --success-foreground: 0 0% 0%;
+
+    /* Gradient accent colors (pink to blue) */
+    --gradient-start: 330 95% 60%;
+    --gradient-end: 195 100% 50%;
+
+    /* Warning (countdown urgency) */
+    --warning: 0 100% 60%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Error/Destructive */
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* === CARDS & SURFACES === */
+    --card: 220 15% 12%;
+    --card-foreground: 0 0% 98%;
+    --card-overlay: 0 0% 0% / 0.7;
+
+    --popover: 220 15% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    /* === STICKER AESTHETIC === */
+    /* Thick white borders for sticker effect */
+    --sticker-border: 0 0% 100%;
+    --sticker-shadow: 0 8px 24px -4px hsl(0 0% 0% / 0.5);
+
+    /* === NEUTRAL COLORS === */
+    --secondary: 220 10% 18%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 220 10% 20%;
+    --muted-foreground: 0 0% 60%;
+    --muted-light: 0 0% 50%;
+
+    --accent: 330 30% 20%;
+    --accent-foreground: 330 95% 70%;
+
+    /* === INTERACTIVE STATES === */
+    --border: 0 0% 25%;
+    --border-light: 0 0% 30%;
+    --border-glass: 0 0% 35%;
+    --input: 220 10% 15%;
+    --ring: 330 95% 60%;
+
+    /* === TEXT COLORS === */
+    --text-primary: 0 0% 100%;
+    --text-secondary: 0 0% 80%;
+    --text-muted: 0 0% 50%;
+    --text-accent: 330 95% 65%;
+
+    /* === CHART COLORS === */
+    --chart-1: 330 95% 60%;
+    --chart-2: 195 100% 50%;
+    --chart-3: 80 100% 50%;
+    --chart-4: 270 80% 60%;
+    --chart-5: 40 100% 55%;
+
+    --radius: 0.75rem;
+
+    /* === SIDEBAR === */
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 330 95% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 330 30% 20%;
+    --sidebar-accent-foreground: 330 95% 70%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 330 95% 60%;
+    --sidebar: 220 15% 10%;
+
+    /* === TYPOGRAPHY === */
+    --font-display: 'Bangers', cursive;
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* === SHADOWS === */
+    --shadow-sticker: 4px 4px 0px 0px hsl(0 0% 0%);
+    --shadow-sticker-hover: 6px 6px 0px 0px hsl(0 0% 0%);
+    --shadow-glow-pink: 0 0 30px hsl(330 95% 60% / 0.5);
+    --shadow-glow-blue: 0 0 30px hsl(195 100% 50% / 0.5);
+    --shadow-glow-green: 0 0 30px hsl(80 100% 50% / 0.5);
+    
+    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.15);
+    --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.2);
+    --shadow-sm: 0 2px 8px -2px hsl(0 0% 0% / 0.3);
+    --shadow: 0 4px 16px -4px hsl(0 0% 0% / 0.4);
+    --shadow-md: 0 8px 24px -6px hsl(0 0% 0% / 0.5);
+    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.6);
+    --shadow-xl: 0 16px 48px -12px hsl(0 0% 0% / 0.7);
+    --shadow-2xl: 0 24px 64px -16px hsl(0 0% 0% / 0.8);
+
+    --tracking-normal: 0em;
+    --spacing: 0.25rem;
+  }
+
+  /* Dark mode is the default for Alot! */
+  .dark {
+    /* Same as root - dark is default */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+/* Chunky graffiti-style headers */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Heavy body text */
+.text-body {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* ============================================
+   STICKER AESTHETIC
+   ============================================ */
+
+/* Sticker card - thick white border with drop shadow */
+.sticker-card {
+  @apply relative rounded-2xl border-4 border-white;
+  box-shadow: var(--shadow-sticker);
+  transform: rotate(-1deg);
+}
+
+.sticker-card:hover {
+  box-shadow: var(--shadow-sticker-hover);
+  transform: rotate(0deg) translateY(-4px);
+}
+
+/* Sticker button */
+.sticker-btn {
+  @apply relative rounded-xl font-bold;
+  border: 3px solid white;
+  box-shadow: var(--shadow-sticker);
+  transform: rotate(-2deg);
+  transition: all 0.15s ease-out;
+}
+
+.sticker-btn:hover {
+  box-shadow: var(--shadow-sticker-hover);
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.sticker-btn:active {
+  box-shadow: 2px 2px 0px 0px hsl(0 0% 0%);
+  transform: rotate(0deg) translateY(2px);
+}
+
+/* Slight tilts for dynamic energy */
+.tilt-left { transform: rotate(-2deg); }
+.tilt-right { transform: rotate(2deg); }
+.tilt-left-sm { transform: rotate(-1deg); }
+.tilt-right-sm { transform: rotate(1deg); }
+
+/* ============================================
+   GRADIENT UTILITIES
+   ============================================ */
+
+/* Hot Pink to Electric Blue gradient */
+.gradient-hype {
+  background: linear-gradient(135deg, hsl(330 95% 60%) 0%, hsl(195 100% 50%) 100%);
+}
+
+.gradient-hype-text {
+  background: linear-gradient(135deg, hsl(330 95% 60%) 0%, hsl(195 100% 50%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Volt Green gradient for success/money */
+.gradient-volt {
+  background: linear-gradient(135deg, hsl(80 100% 50%) 0%, hsl(120 80% 45%) 100%);
+}
+
+/* Dark asphalt background */
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(220 15% 6%) 0%, hsl(230 20% 8%) 50%, hsl(240 15% 10%) 100%);
+}
+
+.gradient-bg-custom {
+  background: linear-gradient(135deg, hsl(var(--background-gradient-start)), hsl(var(--background-gradient-middle)), hsl(var(--background-gradient-end)));
+}
+
+/* ============================================
+   GLOW EFFECTS
+   ============================================ */
+
+.glow-pink {
+  box-shadow: var(--shadow-glow-pink);
+}
+
+.glow-blue {
+  box-shadow: var(--shadow-glow-blue);
+}
+
+.glow-green {
+  box-shadow: var(--shadow-glow-green);
+}
+
+/* Pulsing glow for important elements */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(330 95% 60% / 0.4); }
+  50% { box-shadow: 0 0 40px hsl(330 95% 60% / 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ============================================
+   BUTTON UTILITIES
+   ============================================ */
+
+.btn-glass {
+  @apply bg-card/80 hover:bg-card text-foreground border border-border transition-[background-color,box-shadow] duration-200 hover:shadow-md;
+}
+
+.btn-hype {
+  @apply text-white font-bold rounded-xl;
+  border: 3px solid white;
+  background: linear-gradient(135deg, hsl(330 95% 60%) 0%, hsl(195 100% 50%) 100%);
+}
+
+.btn-hype:hover {
+  box-shadow: var(--shadow-sticker-hover);
+  transform: translateY(-2px);
+}
+
+.btn-volt {
+  @apply text-black font-bold rounded-xl;
+  border: 3px solid white;
+  background: linear-gradient(135deg, hsl(80 100% 50%) 0%, hsl(120 80% 45%) 100%);
+  box-shadow: var(--shadow-sticker);
+}
+
+/* ============================================
+   PROGRESS BAR - BUBBLING LIQUID EFFECT
+   ============================================ */
+
+@keyframes liquid-bubble {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.progress-liquid {
+  background: linear-gradient(
+    90deg,
+    hsl(330 95% 60%) 0%,
+    hsl(280 90% 55%) 25%,
+    hsl(195 100% 50%) 50%,
+    hsl(280 90% 55%) 75%,
+    hsl(330 95% 60%) 100%
+  );
+  background-size: 200% 100%;
+  animation: liquid-bubble 3s ease infinite;
+}
+
+/* ============================================
+   COUNTDOWN TIMER STYLES
+   ============================================ */
+
+.countdown-urgent {
+  @apply text-warning font-display animate-pulse;
+}
+
+.countdown-badge {
+  @apply px-3 py-1.5 rounded-full bg-warning/20 border-2 border-warning text-warning font-bold;
+}
+
+/* ============================================
+   LEGACY UTILITIES (kept for compatibility)
+   ============================================ */
+
+.glass-card {
+  @apply bg-card/80 backdrop-blur-md border border-border shadow-sm;
+}
+
+.glass-elevated {
+  @apply bg-card/90 backdrop-blur-lg border border-border shadow-md;
+}
+
+.text-overlay-primary {
+  @apply text-foreground;
+}
+
+.text-overlay-secondary {
+  @apply text-muted-foreground;
+}
+
+.hover-lift {
+  @apply hover:-translate-y-1 transition-transform duration-200;
+}
+
+.hover-scale {
+  @apply hover:scale-105 transition-transform duration-200;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes scroll-cards {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-cards {
+  animation: scroll-cards 25s linear infinite;
+}
+
+@keyframes scroll-brands {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-brands {
+  animation: scroll-brands 30s linear infinite;
+}
+
+/* Screen shake for wrong answers */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Success flash */
+@keyframes flash-green {
+  0% { background-color: transparent; }
+  50% { background-color: hsl(80 100% 50% / 0.3); }
+  100% { background-color: transparent; }
+}
+
+.animate-flash-green {
+  animation: flash-green 0.5s ease-out;
+}
+
+/* Confetti explosion placeholder */
+@keyframes confetti-fall {
+  0% { transform: translateY(-100%) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Money flying animation */
+@keyframes money-fly {
+  0% { 
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 1;
+  }
+  100% { 
+    transform: translateY(-100px) translateX(50px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.animate-money-fly {
+  animation: money-fly 0.8s ease-out forwards;
+}
+
+/* ============================================
+   HOLOGRAPHIC SHINE
+   ============================================ */
+
+@keyframes holographic {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.holographic-shine {
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    hsl(330 95% 60% / 0.2) 40%,
+    hsl(195 100% 50% / 0.3) 50%,
+    hsl(330 95% 60% / 0.2) 60%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: holographic 4s ease-in-out infinite;
+}
+
+/* ============================================
+   APP LOGO
+   ============================================ */
+
+.app-logo {
+  height: 2.5rem;
+  width: auto;
+  object-fit: contain;
+}

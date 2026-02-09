@@ -1,0 +1,46 @@
+project_id = "nmxcrkolhybwjpzylrnw"
+
+[functions.remove-background]
+verify_jwt = false
+
+[functions.mystery-card-checkout]
+verify_jwt = false
+
+[functions.mystery-card-webhook]
+verify_jwt = false
+
+[functions.mystery-card-free-pull]
+verify_jwt = true
+
+[functions.category-pack-checkout]
+verify_jwt = false
+
+[functions.room-settle-cron]
+verify_jwt = false
+
+[functions.room-lock-cron]
+verify_jwt = false
+
+[functions.room-entry-checkout]
+verify_jwt = false
+
+[functions.room-entry-webhook]
+verify_jwt = false
+
+[functions.room-entry-refund]
+verify_jwt = false
+
+[functions.admin-get-stats]
+verify_jwt = true
+
+[functions.admin-get-revenue]
+verify_jwt = true
+
+[functions.admin-get-user-growth]
+verify_jwt = true
+
+[functions.admin-get-activity]
+verify_jwt = true
+
+[functions.admin-room-manage]
+verify_jwt = true

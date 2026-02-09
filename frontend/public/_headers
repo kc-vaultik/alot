@@ -1,0 +1,60 @@
+# Security headers for all pages
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https: https://www.facebook.com https://www.google-analytics.com; connect-src 'self' https://*.supabase.co https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://www.facebook.com; frame-src 'self' https://player.vimeo.com https://vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+
+# Cache control headers for static assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache control for images with optimization
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache control for fonts
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache control for CSS and JS with versioning
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# No cache for service worker
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# API responses - short cache with revalidation
+/api/*
+  Cache-Control: public, max-age=60, stale-while-revalidate=300
+
+# HTML pages - cache but validate
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# CDN and performance headers
+/*
+  # Enable GZIP compression
+  Content-Encoding: gzip
+  # Resource hints for better performance
+  Link: </assets/critical.css>; rel=preload; as=style
+  # Early hints for faster navigation
+  103 Early Hints: Link: </assets/main.js>; rel=modulepreload
