@@ -174,22 +174,45 @@ Follow prompts:
 
 ## 🔑 Important Credentials Summary
 
-Store these securely (1Password, .env.production, etc.):
+**⚠️ SECURITY:** All sensitive credentials are stored locally in:
+```
+C:\Users\kacnf\alot\secrets\supabase.env
+```
 
+This file is git-ignored and contains:
+- Supabase Service Role Key (admin access)
+- Database password
+- API keys and tokens
+
+**Public-safe credentials** (already in repository):
 ```bash
-# Supabase
+# Supabase (Public Info)
 SUPABASE_ORG_ID=imhvdmvbsiejdsvrtynw
 SUPABASE_PROJECT_ID=dovhuaykpvdbzdwiahzr
 SUPABASE_URL=https://dovhuaykpvdbzdwiahzr.supabase.co
 SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvdmh1YXlrcHZkYnpkd2lhaHpyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA2MzM3OTYsImV4cCI6MjA4NjIwOTc5Nn0.23d096Zk4vyarXPcW_THSXB-E8C6j-TAMFF-7D3jg_g
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRvdmh1YXlrcHZkYnpkd2lhaHpyIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDYzMzc5NiwiZXhwIjoyMDg2MjA5Nzk2fQ.3totSiIUqPTPDjbJfNFkUiRI-gh5ix6CD42BsfumuUw
-DB_PASSWORD=1nJF3jG2C4xpxLTAgTRXe6f_hKmHhri21uBBy9nhzh0
 
 # GitHub
 REPO=https://github.com/kc-vaultik/alot
 
 # Vercel
 VERCEL_USER=kunaal-6012
+```
+
+**To access sensitive credentials:**
+```bash
+# View credentials
+cat C:\Users\kacnf\alot\secrets\supabase.env
+
+# Load into environment (bash/git bash)
+source secrets/supabase.env
+
+# Load into environment (PowerShell)
+Get-Content secrets\supabase.env | ForEach-Object {
+    if ($_ -match '^([^=#]+)=(.+)$') {
+        [Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Process')
+    }
+}
 ```
 
 ---
