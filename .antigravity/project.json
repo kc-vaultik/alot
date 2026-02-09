@@ -1,0 +1,118 @@
+{
+  "project": {
+    "name": "ALOT!",
+    "version": "1.0.0",
+    "description": "Marketplace platform for collectible Lot Rooms with provably fair draws and closed-loop credit economy",
+    "type": "full-stack-web",
+    "author": "Pietro Novelli",
+    "created": "2026-02-09"
+  },
+  "architecture": {
+    "pattern": "microservices-ready",
+    "backend": {
+      "framework": "FastAPI",
+      "language": "Python",
+      "version": "3.12+",
+      "orm": "SQLAlchemy",
+      "database": "PostgreSQL",
+      "cache": "Redis",
+      "queue": "Celery"
+    },
+    "frontend": {
+      "framework": "React",
+      "language": "TypeScript",
+      "bundler": "Vite",
+      "ui": "Tailwind CSS",
+      "state": "Zustand",
+      "realtime": "WebSocket"
+    },
+    "infrastructure": {
+      "payments": "Stripe",
+      "storage": "AWS S3",
+      "cdn": "CloudFront",
+      "hosting": "AWS/Docker",
+      "monitoring": "Sentry",
+      "analytics": "PostHog"
+    }
+  },
+  "ports": {
+    "backend": 8006,
+    "frontend": 3004,
+    "websocket": 8007,
+    "redis": 6379,
+    "postgres": 5432
+  },
+  "modules": [
+    {
+      "name": "lot-engine",
+      "description": "Core lot creation, funding, and state management",
+      "priority": "critical",
+      "dependencies": ["database", "payment-processor"]
+    },
+    {
+      "name": "draw-engine",
+      "description": "Provably fair cryptographic winner selection",
+      "priority": "critical",
+      "dependencies": ["lot-engine", "audit-system"]
+    },
+    {
+      "name": "credit-economy",
+      "description": "Stash Credits ledger and redemption system",
+      "priority": "critical",
+      "dependencies": ["database", "lot-engine"]
+    },
+    {
+      "name": "marketplace",
+      "description": "Host/Creator lot creation and management",
+      "priority": "high",
+      "dependencies": ["lot-engine", "host-management"]
+    },
+    {
+      "name": "trivia-system",
+      "description": "Trivia gate and credit earning mechanism",
+      "priority": "medium",
+      "dependencies": ["lot-engine", "credit-economy"]
+    },
+    {
+      "name": "payment-processor",
+      "description": "Stripe integration for payments and refunds",
+      "priority": "critical",
+      "dependencies": ["stripe-api"]
+    },
+    {
+      "name": "fulfillment",
+      "description": "Winner claim and product delivery tracking",
+      "priority": "high",
+      "dependencies": ["lot-engine", "logistics-api"]
+    }
+  ],
+  "deployment": {
+    "environments": ["development", "staging", "production"],
+    "strategy": "blue-green",
+    "containerized": true,
+    "cicd": "github-actions",
+    "monitoring": true
+  },
+  "features": {
+    "implemented": [],
+    "planned": [
+      "lot-creation",
+      "entry-purchase",
+      "provably-fair-draw",
+      "credit-system",
+      "marketplace",
+      "trivia-gate",
+      "host-management",
+      "fulfillment-tracking",
+      "dream-collectible-redemption"
+    ]
+  },
+  "compliance": {
+    "legal_review_required": true,
+    "gambling_classification": "TBD",
+    "age_restriction": "18+",
+    "geo_restrictions": "TBD",
+    "kyc_required": false,
+    "data_protection": "GDPR-ready"
+  }
+}
